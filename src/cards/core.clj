@@ -1,6 +1,14 @@
 (ns cards.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro time-limited [ms & body]
+  "This is to provide a timeout when communicating with the client, so
+  we don't wait forever for them to respond"
+  `(let [f# (future ~@body)]
+     (.get f# ~ms java.util.concurrent.TimeUnit/MILLISECONDS)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn in?
+  "true if seq contains elem"
+  [seq elem]
+  (some #(= elem %) seq))

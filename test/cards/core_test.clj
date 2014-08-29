@@ -2,6 +2,12 @@
   (:require [clojure.test :refer :all]
             [cards.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(deftest in?-test
+  (testing "in?"
+    (is (in? "abc" \c))
+    (is (not (in? "abc" \d)))
+    (is (in? '(a b c) 'c))
+    (is (not (in? '(a b c) 'd)))
+    (is (in? [1 2 3] 2))
+    (is (not (in? [1 2 3] 8)))))
